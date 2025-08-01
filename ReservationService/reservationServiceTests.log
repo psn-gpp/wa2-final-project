@@ -1,0 +1,13 @@
+2025-05-13T19:04:18.398+02:00  INFO 26960 --- [ReservationService] [Test worker] i.w.r.services.CarModelServiceImpl       : starting db test: jdbc:postgresql://localhost:56296/test?loggerLevel=OFF
+2025-05-13T19:04:18.414+02:00  INFO 26960 --- [ReservationService] [Test worker] i.w.r.CarModelRestTemplateTests          : Starting CarModelRestTemplateTests using Java 21.0.6 with PID 26960 (started by flaviacalabrese in /Users/flaviacalabrese/IdeaProjects/lab4-g07/ReservationService)
+2025-05-13T19:04:18.414+02:00 DEBUG 26960 --- [ReservationService] [Test worker] i.w.r.CarModelRestTemplateTests          : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-13T19:04:18.415+02:00  INFO 26960 --- [ReservationService] [Test worker] i.w.r.CarModelRestTemplateTests          : The following 1 profile is active: "test"
+2025-05-13T19:04:28.595+02:00  INFO 26960 --- [ReservationService] [Test worker] i.w.r.CarModelRestTemplateTests          : Started CarModelRestTemplateTests in 14.428 seconds (process running for 16.929)
+2025-05-13T19:04:30.372+02:00  INFO 26960 --- [ReservationService] [http-nio-auto-1-exec-1] i.w.r.services.CarModelServiceImpl       : Get all models from DB invoked
+2025-05-13T19:04:30.578+02:00 DEBUG 26960 --- [ReservationService] [http-nio-auto-1-exec-1] i.w.r.services.CarModelServiceImpl       : No models found in DB
+2025-05-13T19:04:30.755+02:00  WARN 26960 --- [ReservationService] [http-nio-auto-1-exec-1] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2025-05-13T19:04:31.249+02:00  INFO 26960 --- [ReservationService] [http-nio-auto-1-exec-2] i.w.r.services.CarModelServiceImpl       : Get all models from DB invoked
+2025-05-13T19:04:31.256+02:00 DEBUG 26960 --- [ReservationService] [http-nio-auto-1-exec-2] i.w.r.services.CarModelServiceImpl       : No models found in DB

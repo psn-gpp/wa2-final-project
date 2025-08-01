@@ -1,0 +1,23 @@
+{
+  "name": "paypal-outbox-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "user3",
+    "database.password": "pass3",
+    "database.dbname": "db3",
+    "database.server.name": "paypal",
+    "table.include.list": "public.paypal_outbox_events",
+    "topic.prefix": "paypal",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "true",
+    "plugin.name": "pgoutput",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "snapshot.mode": "initial"
+  }
+}

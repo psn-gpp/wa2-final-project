@@ -1,0 +1,382 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > EmployeeController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.usermanagmentservice.controllers</a>
+</div>
+
+<h1>Coverage Summary for Class: EmployeeController (it.wa2.usermanagmentservice.controllers)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EmployeeController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (35/35)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$1</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$10</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$11</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$12</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$13</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$14</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$15</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$16</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$17</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$18</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$19</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$2</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$20</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$21</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$22</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$23</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$24</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$25</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$26</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$27</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$28</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$3</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$4</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$5</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$6</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$7</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$8</td>
+  </tr>
+  <tr>
+    <td class="name">EmployeeController$$SpringCGLIB$$9</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (35/35)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.usermanagmentservice.controllers
+&nbsp;
+&nbsp;import io.swagger.v3.oas.annotations.Operation
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponse
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponses
+&nbsp;import it.wa2.usermanagmentservice.dtos.EmployeeDTO
+&nbsp;import it.wa2.usermanagmentservice.dtos.RoleDTO
+&nbsp;import it.wa2.usermanagmentservice.services.EmployeeService
+&nbsp;import jakarta.validation.Valid
+&nbsp;import jakarta.validation.constraints.Min
+&nbsp;import org.slf4j.LoggerFactory
+&nbsp;import org.springframework.data.domain.Page
+&nbsp;import org.springframework.data.domain.Pageable
+&nbsp;import org.springframework.http.ResponseEntity
+&nbsp;import org.springframework.validation.annotation.Validated
+&nbsp;import org.springframework.web.bind.annotation.*
+&nbsp;import org.springframework.web.util.UriComponentsBuilder
+&nbsp;
+&nbsp;
+&nbsp;/**
+&nbsp; * Get all employees: [getEmployees]
+&nbsp; *
+&nbsp; * Get one employee: [getEmployeeById]
+&nbsp; *
+&nbsp; * add: [addEmployee]
+&nbsp; *
+&nbsp; * delete: [deleteEmployeeById]
+&nbsp; *
+&nbsp; * put: [updateEmployeeById]
+&nbsp; *
+&nbsp; *  ## SERVE ???????
+&nbsp; *
+&nbsp; * get role employees:  ***SERVE ????*** ---&gt; No !!!!! GET allRole
+&nbsp; */
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;@RestController</b>
+&nbsp;@RequestMapping(&quot;/api/v1/employees&quot;)
+&nbsp;@Validated
+<b class="fc">&nbsp;class EmployeeController(private val employeeService: EmployeeService) {</b>
+&nbsp;
+<b class="fc">&nbsp;    private val logger = LoggerFactory.getLogger(EmployeeController::class.java)</b>
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get all employees&quot;,
+&nbsp;        description = &quot;Returns all employees&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;&quot;)
+&nbsp;    fun getEmployees(
+&nbsp;        pageable: Pageable,
+&nbsp;        @RequestParam(required = false) name: String?,
+&nbsp;        @RequestParam(required = false) surname: String?,
+&nbsp;        @RequestParam(required = false) address: String?,
+&nbsp;        @RequestParam(required = false) city: String?,
+&nbsp;        @RequestParam(required = false) nameRole: String?,
+&nbsp;        @RequestParam(required = false) salary: Double?,
+&nbsp;    ): Page&lt;EmployeeDTO&gt; {
+<b class="fc">&nbsp;        logger.info(&quot;Requesting all employees with filters:&quot; +</b>
+<b class="fc">&nbsp;                &quot;name: $name, surname=$surname, city=$city, address=$address, salary=$salary, roleName=$nameRole&quot;)</b>
+<b class="fc">&nbsp;        val result = employeeService.getEmployees(</b>
+<b class="fc">&nbsp;            pageable,</b>
+<b class="fc">&nbsp;            name,</b>
+<b class="fc">&nbsp;            surname,</b>
+<b class="fc">&nbsp;            address,</b>
+<b class="fc">&nbsp;            city,</b>
+<b class="fc">&nbsp;            nameRole,</b>
+<b class="fc">&nbsp;            salary</b>
+&nbsp;        )
+<b class="fc">&nbsp;        logger.debug(&quot;Retrieved ${result.totalElements} employees&quot;)</b>
+<b class="fc">&nbsp;        return result</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get single employee&quot;,
+&nbsp;        description = &quot;Returns a employee&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;/{userId}&quot;)
+&nbsp;    fun getEmployeeById(@PathVariable userId: Long): EmployeeDTO {
+<b class="fc">&nbsp;        logger.info(&quot;Requesting employee with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        val employee = employeeService.getEmployeeById(userId)</b>
+<b class="fc">&nbsp;        logger.debug(&quot;Retrieve employee:${employee.genericUserData.email}&quot;)</b>
+<b class="fc">&nbsp;        return employee</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Add a new employee&quot;,
+&nbsp;        description = &quot;Creates a new employee&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;201&quot;, description = &quot;Created&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @PostMapping(&quot;&quot;)
+&nbsp;    fun addEmployee(
+&nbsp;        @Valid @RequestBody employee: EmployeeDTO,
+&nbsp;        uriBilder: UriComponentsBuilder
+&nbsp;    ): ResponseEntity&lt;EmployeeDTO&gt; {
+<b class="fc">&nbsp;        logger.info(&quot;Creating a new employee with email: ${employee.genericUserData.email}&quot;)</b>
+<b class="fc">&nbsp;        val newEmployee = employeeService.addEmployee(employee)</b>
+<b class="fc">&nbsp;        val location = uriBilder.path(&quot;api/v1/employees/{userId}&quot;).buildAndExpand(newEmployee.genericUserData.id).toUri()</b>
+<b class="fc">&nbsp;        logger.info(&quot;Employee created successfully with id: ${newEmployee.genericUserData.id}&quot;)</b>
+<b class="fc">&nbsp;        return ResponseEntity.created(location).body(newEmployee)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Update an employee&quot;,
+&nbsp;        description = &quot;Update an employee&quot;,
+&nbsp;    )
+&nbsp;    @PutMapping(&quot;/{userId}&quot;)
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    fun updateEmployeeById(@Valid @PathVariable(&quot;userId&quot;) userId: Long, @RequestBody employee: EmployeeDTO): EmployeeDTO {
+<b class="fc">&nbsp;        logger.info(&quot;Updating employee with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        val updatedEmployee =  employeeService.updateEmployeeById(userId, employee)</b>
+<b class="fc">&nbsp;        logger.info(&quot;Employee updated successfully with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        return updatedEmployee</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Delete an employee&quot;,
+&nbsp;        description = &quot;Delete an employee by id&quot;,
+&nbsp;    )
+&nbsp;    @DeleteMapping(&quot;/{userId}&quot;)
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    fun deleteEmployeeById(@PathVariable(&quot;userId&quot;) userId: Long) {
+<b class="fc">&nbsp;        logger.info(&quot;Deleting employee with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        employeeService.deleteEmployee(userId)</b>
+<b class="fc">&nbsp;        logger.info(&quot;Deleted employee with id: $userId&quot;)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get all available roles&quot;,
+&nbsp;        description = &quot;Returns all available roles&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;/roles&quot;)
+&nbsp;    fun getEmployeesRoles(): List&lt;RoleDTO&gt; {
+<b class="fc">&nbsp;        logger.info(&quot;Requesting all roles&quot;)</b>
+<b class="fc">&nbsp;        val roles = employeeService.getEmployeesRoles()</b>
+<b class="fc">&nbsp;        logger.info(&quot;Retrieved roles: $roles&quot;)</b>
+<b class="fc">&nbsp;        return roles</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

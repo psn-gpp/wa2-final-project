@@ -1,0 +1,68 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: APIGateway
+
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:9095/realms/ez_car_rent
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: gateway-client
+            client-secret: zrqe46t4C3UPCONL7uY1RqLa9EBctpRv
+            # purpose of the interaction
+            # openid: we get also ID token
+            # offline_access: we get renewal token
+            scope:
+              - openid
+              - offline_access
+            authorization-grant-type: authorization_code
+            # url to return when the access is ok
+            redirect-uri: http://localhost:8084/login/oauth2/code/keycloak
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: reservationService
+            uri: ${RESERVATION_SERVICE_URL}
+            predicates:
+              - Path=/api/v1/models/**, /api/v1/vehicles/**, /api/v1/reservations/**
+            filters:
+              #- RewritePath=/api/service1/(?<segment>.*), /${segment}
+              - TokenRelay=
+              #debug
+              #- SetResponseHeader=Route-Matched, service1
+          - id: userService
+            uri: ${USER_SERVICE_URL}
+            predicates:
+              - Path=/api/v1/customers/**, /api/v1/employees/**, /api/v1/users/**
+            filters:
+              - TokenRelay=
+          #potrebbe non servire
+          - id: paymentService
+            uri: ${PAYMENT_SERVICE_URL}
+            predicates:
+              - Path=/api/v1/orders/**
+            filters:
+              - TokenRelay=
+
+          - id: ui
+            uri: ${UI_URL}
+            predicates:
+              - Path=/ui/**
+            filters:
+              - RewritePath=/ui/(?<segment>.*), /ui/${segment}
+              - AddRequestHeader=X-Debug, true
+              - SetResponseHeader=Route-Matched, ui
+
+UI_URL: "http://localhost:8080"
+RESERVATION_SERVICE_URL: "http://localhost:8080"
+USER_SERVICE_URL: "http://localhost:8081"
+PAYMENT_SERVICE_URL: "http://localhost:8082"
+#IAM_URL: "http://localhost:9090/realms/spring"
+

@@ -1,0 +1,117 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ReservationRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.reservationservice.repositories</a>
+</div>
+
+<h1>Coverage Summary for Class: ReservationRepository (it.wa2.reservationservice.repositories)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ReservationRepository</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.reservationservice.repositories
+&nbsp;
+&nbsp;import it.wa2.reservationservice.dtos.ReservationDTO
+&nbsp;import it.wa2.reservationservice.entities.Reservation
+&nbsp;import it.wa2.reservationservice.entities.Status
+&nbsp;import it.wa2.reservationservice.entities.Vehicle
+&nbsp;import org.springframework.data.domain.Page
+&nbsp;import org.springframework.data.domain.Pageable
+&nbsp;import org.springframework.data.jpa.repository.JpaRepository
+&nbsp;import org.springframework.data.jpa.repository.Query
+&nbsp;import java.util.*
+&nbsp;
+&nbsp;interface ReservationRepository : JpaRepository&lt;Reservation, Long&gt; {
+&nbsp;
+&nbsp;    @Query(
+&nbsp;        &quot;&quot;&quot;
+&nbsp;        SELECT r FROM Reservation r
+&nbsp;        WHERE (?1 IS NULL OR r.customerId = ?1)
+&nbsp;        AND (?2 IS NULL OR r.employeeId = ?2) 
+&nbsp;        AND (?3 IS NULL OR r.vehicle.refCarModel.id = ?3) 
+&nbsp;        AND (?4 IS NULL OR r.status.status = ?4) 
+&nbsp;        AND (:#{#reservationDate == null} = TRUE OR r.reservationDate = ?5)
+&nbsp;        AND (:#{#startDate == null} = TRUE OR r.startDate = ?6)
+&nbsp;        AND (:#{#endDate == null} = TRUE OR r.endDate = ?7)
+&nbsp;     &quot;&quot;&quot;
+&nbsp;    )
+&nbsp;    fun findWithFilters(
+&nbsp;        pageable: Pageable,
+&nbsp;        customerId: Long?,
+&nbsp;        employeeId: Long?,
+&nbsp;        carModelId: Long?,
+&nbsp;        status: String?,
+&nbsp;        reservationDate: Date?,
+&nbsp;        startDate: Date?,
+&nbsp;        endDate: Date?
+&nbsp;    ): Page&lt;Reservation&gt;
+&nbsp;
+&nbsp;    fun getReservationsByCustomerId(customerId: Long, pageable: Pageable): Page&lt;Reservation&gt;
+&nbsp;
+&nbsp;    @Query(
+&nbsp;        &quot;&quot;&quot;
+&nbsp;        SELECT r FROM Reservation r
+&nbsp;        WHERE (?1 IS NULL OR r.vehicle.id = ?1)
+&nbsp;        AND (?2 IS NULL OR r.status.status = ?2) 
+&nbsp;        
+&nbsp;     &quot;&quot;&quot;
+&nbsp;    )
+&nbsp;    fun getReservationByVehicleAndStatus(vehicleId: Long, status: String): Reservation?
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

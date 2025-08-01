@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > EmployeeDuplicate</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.usermanagmentservice.advices</a>
+</div>
+
+<h1>Coverage Summary for Class: EmployeeDuplicate (it.wa2.usermanagmentservice.advices)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EmployeeDuplicate</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.usermanagmentservice.advices
+&nbsp;
+&nbsp;import org.springframework.http.HttpStatus
+&nbsp;import org.springframework.http.ProblemDetail
+&nbsp;import org.springframework.web.bind.annotation.ExceptionHandler
+&nbsp;import org.springframework.web.bind.annotation.RestControllerAdvice
+&nbsp;import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
+&nbsp;
+<b class="nc">&nbsp;class EmployeeDuplicate(message: String) : RuntimeException(message)</b>
+&nbsp;class EmployeeNotFound(message: String) : RuntimeException(message)
+&nbsp;class EmployeeInconsistency(message: String) : RuntimeException(message)
+&nbsp;class RoleNotFound(message: String) : RuntimeException(message)
+&nbsp;
+&nbsp;@RestControllerAdvice
+&nbsp;class ProblemDetailsEmployeeHandler: ResponseEntityExceptionHandler() {
+&nbsp;
+&nbsp;    @ExceptionHandler(EmployeeDuplicate::class)
+&nbsp;    fun handleEmployeeDuplicate(e: EmployeeDuplicate) = ProblemDetail.forStatus(HttpStatus.CONFLICT).apply {
+&nbsp;        title = &quot;Duplicate error&quot;
+&nbsp;        detail = e.message
+&nbsp;    }
+&nbsp;
+&nbsp;    @ExceptionHandler(EmployeeNotFound::class)
+&nbsp;    fun handleEmployeeNotFound(e: EmployeeNotFound) = ProblemDetail.forStatus(HttpStatus.NOT_FOUND).apply {
+&nbsp;        title = &quot;Employee not found&quot;
+&nbsp;        detail = e.message
+&nbsp;    }
+&nbsp;
+&nbsp;    @ExceptionHandler(EmployeeInconsistency::class)
+&nbsp;    fun handleEmployeeInconsistency(e: EmployeeInconsistency) = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST).apply {
+&nbsp;        title = &quot;Employee id inconsistent&quot;
+&nbsp;        detail = e.message
+&nbsp;    }
+&nbsp;
+&nbsp;    @ExceptionHandler(RoleNotFound::class)
+&nbsp;    fun handleEmployeeNotFound(e: RoleNotFound) = ProblemDetail.forStatus(HttpStatus.NOT_FOUND).apply {
+&nbsp;        title = &quot;Role not found&quot;
+&nbsp;        detail = e.message
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

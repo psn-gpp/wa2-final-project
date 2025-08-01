@@ -1,0 +1,130 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > VehicleService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.reservationservice.services</a>
+</div>
+
+<h1>Coverage Summary for Class: VehicleService (it.wa2.reservationservice.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">VehicleService$Subclass4</td>
+  </tr>
+  <tr>
+    <td class="name">VehicleService$Subclass4$auxiliary$Cac9QKlH</td>
+  </tr>
+  <tr>
+    <td class="name">VehicleService$Subclass4$auxiliary$m1DZJ83V</td>
+  </tr>
+  <tr>
+    <td class="name">VehicleService$Subclass4$auxiliary$Phsrj24s</td>
+  </tr>
+  <tr>
+    <td class="name">VehicleService$Subclass4$auxiliary$xi8fMSeY</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.reservationservice.services
+&nbsp;
+&nbsp;import com.github.fge.jsonpatch.JsonPatch
+&nbsp;import it.wa2.reservationservice.dtos.CarModelDTO
+&nbsp;import it.wa2.reservationservice.dtos.MaintenanceDTO
+&nbsp;import it.wa2.reservationservice.dtos.NoteDTO
+&nbsp;import it.wa2.reservationservice.dtos.VehicleDTO
+&nbsp;import it.wa2.reservationservice.dtos.VehicleFiltersDTO
+&nbsp;import org.springframework.data.domain.Page
+&nbsp;import org.springframework.data.domain.Pageable
+&nbsp;import org.springframework.http.ResponseEntity
+&nbsp;import org.springframework.web.bind.annotation.PathVariable
+&nbsp;import org.springframework.web.bind.annotation.RequestBody
+&nbsp;import java.time.LocalDate
+&nbsp;
+&nbsp;interface VehicleService {
+&nbsp;    fun modifyVehicleMaintenance(vehicleId: Long, maintenanceDTO: MaintenanceDTO)
+&nbsp;    fun getVehicleNotes(vehicleId:Long,
+&nbsp;                        pageable: Pageable,
+&nbsp;                        startDate: LocalDate?,
+&nbsp;                        endDate: LocalDate?,
+&nbsp;                        author:String?): Page&lt;NoteDTO&gt;
+&nbsp;    fun addVehicleNote(vehicleId:Long, noteDTO:NoteDTO) : NoteDTO
+&nbsp;
+&nbsp;    fun getVehicles(pageable:Pageable, refCarModel:Long?, availability:String?, licencePlate:String?, vin:String?, kilometers:Float?, pendingCleaning:Boolean?, pendingMaintenance:Boolean? ) : Page&lt;VehicleDTO&gt;
+&nbsp;    fun getVehicleById(vehicleId: Long): VehicleDTO
+&nbsp;    fun addVehicle(vehicleDTO: VehicleDTO): VehicleDTO
+&nbsp;    fun modifyVehicle(vehicleId: Long, vehicleDTO: VehicleDTO)
+&nbsp;    fun deleteVehicleById(vehicleId: Long)
+&nbsp;    fun modifyVehicleNote(vehicleId: Long, noteId: Long, noteDTO: NoteDTO)
+&nbsp;    fun deleteVehicleNote(vehicleId: Long, noteId: Long)
+&nbsp;    fun patchVehicleById(carId : Long, patch : JsonPatch): ResponseEntity&lt;VehicleDTO&gt;
+&nbsp;    fun getVehicleMaintenances(
+&nbsp;        pageable: Pageable,
+&nbsp;        vehicleId: Long,
+&nbsp;        vehicleLicencePlate: String?,
+&nbsp;        defect: String?,
+&nbsp;        completedMaintenance: Boolean?,
+&nbsp;        date: String?
+&nbsp;    ): Page&lt;MaintenanceDTO&gt;
+&nbsp;    fun getVehicleMaintenanceById(vehicleId: Long, maintenanceId : Long): MaintenanceDTO
+&nbsp;    fun addVehicleMaintenance(vehicleId : Long, maintenance : MaintenanceDTO):MaintenanceDTO
+&nbsp;
+&nbsp;    fun getFilters(): VehicleFiltersDTO
+&nbsp;
+&nbsp;    fun deleteAll()     // testing purpose
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

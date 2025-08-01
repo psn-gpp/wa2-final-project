@@ -1,0 +1,181 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CarModelKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.reservationservice.entities</a>
+</div>
+
+<h1>Coverage Summary for Class: CarModelKt (it.wa2.reservationservice.entities)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CarModelKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.reservationservice.entities
+&nbsp;
+&nbsp;import it.wa2.reservationservice.dtos.CarModelDTO
+&nbsp;import jakarta.persistence.*
+&nbsp;
+&nbsp;@Entity
+&nbsp;class CarModel (
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.AUTO)
+&nbsp;    val id: Long = 0L,
+&nbsp;    val brand: String = &quot;&quot;,
+&nbsp;    val model: String = &quot;&quot;,
+&nbsp;    val modelYear: Int = 0,
+&nbsp;    val segment: String = &quot;&quot;,
+&nbsp;    val doorsNo: Int = 0,
+&nbsp;    val seatingCapacity: Int = 0,
+&nbsp;    val luggageCapacity: Float = 0.0F,
+&nbsp;    val manufacturer: String = &quot;&quot;,
+&nbsp;    val costPerDay: Double = 0.0,
+&nbsp;    val motorDisplacement: Float = 0.0F,
+&nbsp;    val airConditioning: Boolean = false,
+&nbsp;
+&nbsp;    @ManyToOne
+&nbsp;    @JoinColumn(name = &quot;ref_category&quot;/*, referencedColumnName = &quot;id&quot;*/)
+&nbsp;    val category: Category,
+&nbsp;
+&nbsp;    @ManyToOne
+&nbsp;    @JoinColumn(name = &quot;ref_engine&quot;/*, referencedColumnName = &quot;id&quot;*/)
+&nbsp;    val refEngine: Engine,
+&nbsp;
+&nbsp;    @ManyToOne
+&nbsp;    @JoinColumn(name = &quot;ref_transmission&quot;/*, referencedColumnName = &quot;id&quot;*/)
+&nbsp;    val refTransmission: Transmission,
+&nbsp;
+&nbsp;    @ManyToOne
+&nbsp;    @JoinColumn(name = &quot;ref_drivetrain&quot;/*, referencedColumnName = &quot;id&quot;*/)
+&nbsp;    val refDrivetrain: Drivetrain,
+&nbsp;
+&nbsp;    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH])
+&nbsp;    @JoinTable(
+&nbsp;        name = &quot;car_model_safety_features&quot;,
+&nbsp;        joinColumns = [JoinColumn(name = &quot;car_model_id&quot;)],
+&nbsp;        inverseJoinColumns = [JoinColumn(name = &quot;safety_feature_id&quot;)]
+&nbsp;    )
+&nbsp;    val safetyFeatures: MutableSet&lt;SafetyFeatures&gt; = mutableSetOf(),
+&nbsp;
+&nbsp;    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH])
+&nbsp;    @JoinTable(
+&nbsp;        name = &quot;car_model_infotainments&quot;,
+&nbsp;        joinColumns = [JoinColumn(name = &quot;car_model_id&quot;)],
+&nbsp;        inverseJoinColumns = [JoinColumn(name = &quot;infotainment_id&quot;)]
+&nbsp;    )
+&nbsp;    val infotainments: MutableSet&lt;Infotainment&gt; = mutableSetOf(),
+&nbsp;
+&nbsp;
+&nbsp;)
+&nbsp;
+<b class="fc">&nbsp;fun CarModel.toDTO() = CarModelDTO(</b>
+<b class="fc">&nbsp;    id = this.id,</b>
+<b class="fc">&nbsp;    brand = this.brand,</b>
+<b class="fc">&nbsp;    model = this.model,</b>
+<b class="fc">&nbsp;    modelYear = this.modelYear,</b>
+<b class="fc">&nbsp;    segment = this.segment,</b>
+<b class="fc">&nbsp;    doorsNo = this.doorsNo,</b>
+<b class="fc">&nbsp;    seatingCapacity = this.seatingCapacity,</b>
+<b class="fc">&nbsp;    luggageCapacity = this.luggageCapacity,</b>
+<b class="fc">&nbsp;    category = this.category.category,</b>
+<b class="fc">&nbsp;    manufacturer = this.manufacturer,</b>
+<b class="fc">&nbsp;    costPerDay = this.costPerDay,</b>
+<b class="fc">&nbsp;    motorDisplacement = this.motorDisplacement,</b>
+<b class="fc">&nbsp;    airConditioning = this.airConditioning,</b>
+<b class="fc">&nbsp;    engine = this.refEngine.type,</b>
+<b class="fc">&nbsp;    transmission = this.refTransmission.type,</b>
+<b class="fc">&nbsp;    drivetrain = this.refDrivetrain.type,</b>
+<b class="fc">&nbsp;    safetyFeatures = this.safetyFeatures.map { it.feature }.toMutableList(),</b>
+<b class="fc">&nbsp;    infotainments = this.infotainments.map { it.type }.toMutableList()</b>
+&nbsp;)
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

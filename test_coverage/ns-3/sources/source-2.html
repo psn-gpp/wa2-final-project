@@ -1,0 +1,344 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CarModelController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.reservationservice.controllers</a>
+</div>
+
+<h1>Coverage Summary for Class: CarModelController (it.wa2.reservationservice.controllers)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CarModelController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (27/27)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$1</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$10</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$11</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$12</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$13</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$14</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$15</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$16</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$17</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$18</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$19</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$2</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$20</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$21</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$3</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$4</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$5</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$6</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$7</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$8</td>
+  </tr>
+  <tr>
+    <td class="name">CarModelController$$SpringCGLIB$$9</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (27/27)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.reservationservice.controllers
+&nbsp;
+&nbsp;import io.swagger.v3.oas.annotations.Operation
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponse
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponses
+&nbsp;import it.wa2.reservationservice.dtos.CarModelDTO
+&nbsp;import it.wa2.reservationservice.dtos.CarModelFiltersDTO
+&nbsp;import it.wa2.reservationservice.services.CarModelService
+&nbsp;import it.wa2.reservationservice.services.CarModelServiceImpl
+&nbsp;import jakarta.validation.*
+&nbsp;import org.slf4j.LoggerFactory
+&nbsp;import org.springframework.data.domain.Page
+&nbsp;import org.springframework.data.domain.Pageable
+&nbsp;import org.springframework.http.ResponseEntity
+&nbsp;import org.springframework.validation.annotation.Validated
+&nbsp;
+&nbsp;import org.springframework.web.bind.annotation.*
+&nbsp;import org.springframework.web.util.UriComponentsBuilder
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;@RestController</b>
+&nbsp;@Validated
+<b class="fc">&nbsp;class CarModelController(private val carModelService: CarModelService) {</b>
+<b class="fc">&nbsp;    private val logger = LoggerFactory.getLogger(CarModelController::class.java)</b>
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get all car models&quot;,
+&nbsp;        description = &quot;Returns all car models&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;)
+&nbsp;        ]
+&nbsp;    )
+&nbsp;
+&nbsp;    @GetMapping(&quot;api/v1/models&quot;)
+&nbsp;    fun getModels(
+&nbsp;        pageable: Pageable,
+&nbsp;        @RequestParam(required = false) brand: String?,
+&nbsp;        @RequestParam(required = false) model: String?,
+&nbsp;        @RequestParam(required = false) modelYear: Int?,
+&nbsp;        @RequestParam(required = false) segment: String?,
+&nbsp;        @RequestParam(required = false) doorsNo: Int?,
+&nbsp;        @RequestParam(required = false) seatingCapacity: Int?,
+&nbsp;        @RequestParam(required = false) luggageCapacity: Float?,
+&nbsp;        @RequestParam(required = false) category: String?,
+&nbsp;        @RequestParam(required = false) manufacturer: String?,
+&nbsp;        @RequestParam(required = false) engine: String?,
+&nbsp;        @RequestParam(required = false) transmission: String?,
+&nbsp;        @RequestParam(required = false) drivetrain: String?,
+&nbsp;        @RequestParam(required = false) safetyFeatures: List&lt;String&gt;?,
+&nbsp;        @RequestParam(required = false) infotainments: List&lt;String&gt;?
+&nbsp;    ): Page&lt;CarModelDTO&gt; {
+<b class="fc">&nbsp;        return carModelService.getModels(</b>
+<b class="fc">&nbsp;            pageable,</b>
+<b class="fc">&nbsp;            brand,</b>
+<b class="fc">&nbsp;            model,</b>
+<b class="fc">&nbsp;            modelYear,</b>
+<b class="fc">&nbsp;            segment,</b>
+<b class="fc">&nbsp;            doorsNo,</b>
+<b class="fc">&nbsp;            seatingCapacity,</b>
+<b class="fc">&nbsp;            luggageCapacity,</b>
+<b class="fc">&nbsp;            category,</b>
+<b class="fc">&nbsp;            manufacturer,</b>
+<b class="fc">&nbsp;            engine,</b>
+<b class="fc">&nbsp;            transmission,</b>
+<b class="fc">&nbsp;            drivetrain,</b>
+<b class="fc">&nbsp;            safetyFeatures,</b>
+<b class="fc">&nbsp;            infotainments</b>
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get a specific car models by id&quot;,
+&nbsp;        description = &quot;Returns the car model specified by id&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    //  da chiedere validazione parametri URL e vari codici di errore
+&nbsp;    @GetMapping(&quot;api/v1/models/{carModelId}&quot;)
+&nbsp;    fun getModelById(@PathVariable(&quot;carModelId&quot;) carModelId: Long): CarModelDTO {
+<b class="fc">&nbsp;        return carModelService.getModelById(carModelId)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Add a new car model&quot;,
+&nbsp;        description = &quot;Creates a new car model&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;201&quot;, description = &quot;Created&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;409&quot;, description = &quot;Conflict&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @PostMapping(&quot;api/v1/models&quot;)
+&nbsp;    fun addModel(
+&nbsp;        @Valid @RequestBody model: CarModelDTO,
+&nbsp;        uriBilder: UriComponentsBuilder
+&nbsp;    ): ResponseEntity&lt;CarModelDTO&gt; {
+<b class="fc">&nbsp;        logger.info(&quot;Model ${model.model} api&quot;)</b>
+<b class="fc">&nbsp;        val newCarModel = carModelService.addModel(model)</b>
+<b class="fc">&nbsp;        val location = uriBilder.path(&quot;api/v1/models/{carModelId}&quot;).buildAndExpand(newCarModel.id).toUri()</b>
+&nbsp;
+<b class="fc">&nbsp;        return ResponseEntity.created(location).body(newCarModel)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Update a car model&quot;,
+&nbsp;        description = &quot;Update a car model by id&quot;,
+&nbsp;    )
+&nbsp;    @PutMapping(&quot;api/v1/models/{carModelId}&quot;)
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    fun updateModelById(@Valid @PathVariable(&quot;carModelId&quot;) carModelId: Long, @RequestBody model: CarModelDTO) {
+<b class="fc">&nbsp;        return carModelService.modifyCarModel(carModelId, model)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Delete a car model&quot;,
+&nbsp;        description = &quot;Delete a car model by id&quot;,
+&nbsp;    )
+&nbsp;    @DeleteMapping(&quot;api/v1/models/{carModelId}&quot;)
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    fun deleteModelById(@PathVariable(&quot;carModelId&quot;) carModelId: Long) {
+<b class="fc">&nbsp;        return carModelService.deleteModelById(carModelId)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get filters for car models&quot;,
+&nbsp;        description = &quot;Return all possible filters for car models : categories, engines, transmissions, drivetrains, safety features and infotainments&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;api/v1/models/filters&quot;)
+&nbsp;    fun getCarModelsFilters(): CarModelFiltersDTO {
+<b class="fc">&nbsp;        return carModelService.getFilters()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

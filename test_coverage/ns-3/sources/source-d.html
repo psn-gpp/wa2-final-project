@@ -1,0 +1,375 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ReservationController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.reservationservice.controllers</a>
+</div>
+
+<h1>Coverage Summary for Class: ReservationController (it.wa2.reservationservice.controllers)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReservationController</td>
+<td class="coverageStat">
+  <span class="percent">
+    71.4%
+  </span>
+  <span class="absValue">
+    (5/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75.8%
+  </span>
+  <span class="absValue">
+    (25/33)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$1</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$10</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$11</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$12</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$13</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$14</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$15</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$16</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$17</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$18</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$19</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$2</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$20</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$21</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$3</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$4</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$5</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$6</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$7</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$8</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationController$$SpringCGLIB$$9</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    71.4%
+  </span>
+  <span class="absValue">
+    (5/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75.8%
+  </span>
+  <span class="absValue">
+    (25/33)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.reservationservice.controllers
+&nbsp;
+&nbsp;import io.swagger.v3.oas.annotations.Operation
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponse
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponses
+&nbsp;import it.wa2.reservationservice.dtos.ReservationDTO
+&nbsp;import it.wa2.reservationservice.entities.Reservation
+&nbsp;import it.wa2.reservationservice.entities.Status
+&nbsp;import it.wa2.reservationservice.entities.Vehicle
+&nbsp;import it.wa2.reservationservice.services.ReservationService
+&nbsp;import it.wa2.reservationservice.services.ReservationServiceImpl
+&nbsp;import jakarta.validation.Valid
+&nbsp;import org.slf4j.LoggerFactory
+&nbsp;import org.springframework.data.domain.Page
+&nbsp;import org.springframework.data.domain.Pageable
+&nbsp;import org.springframework.format.annotation.DateTimeFormat
+&nbsp;import org.springframework.http.ResponseEntity
+&nbsp;import org.springframework.validation.annotation.Validated
+&nbsp;import org.springframework.web.bind.annotation.*
+&nbsp;import org.springframework.web.util.UriComponentsBuilder
+&nbsp;import java.util.*
+&nbsp;
+&nbsp;/**
+&nbsp; * Get all reservations: [getReservations]
+&nbsp; *
+&nbsp; * Get one reservation: [getReservationById]
+&nbsp; *
+&nbsp; * Get user&#39;s reservations: [getReservationsByUserId] forse
+&nbsp; *
+&nbsp; * add: [addReservation]
+&nbsp; *
+&nbsp; * delete: [deleteReservationById]
+&nbsp; *
+&nbsp; * put: [updateReservationById]
+&nbsp; *
+&nbsp; */
+&nbsp;
+<b class="fc">&nbsp;@RestController</b>
+&nbsp;@RequestMapping(&quot;/api/v1/reservations&quot;)
+&nbsp;@Validated
+<b class="fc">&nbsp;class ReservationController(private val reservationService: ReservationService) {</b>
+<b class="fc">&nbsp;    private val logger = LoggerFactory.getLogger(ReservationServiceImpl::class.java)</b>
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get reservations&quot;,
+&nbsp;        description = &quot;get all reservations&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;&quot;)
+&nbsp;    fun getReservations(
+&nbsp;        pageable: Pageable,
+&nbsp;        @RequestParam(required = false) customerId: Long?,
+&nbsp;        @RequestParam(required = false) employeeId: Long?,
+&nbsp;        @RequestParam(required = false) carModelId: Long?,
+&nbsp;        @RequestParam(required = false) status: String?,
+&nbsp;        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+&nbsp;        @RequestParam(required = false) reservationDate: Date?,
+&nbsp;        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+&nbsp;        @RequestParam(required = false) startDate: Date?,
+&nbsp;        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+&nbsp;        @RequestParam(required = false) endDate: Date?,
+&nbsp;    ): Page&lt;ReservationDTO&gt; {
+<b class="fc">&nbsp;        logger.info(&quot;Getting all reservations&quot;)</b>
+&nbsp;
+<b class="fc">&nbsp;        val reservations =  reservationService.getReservations(</b>
+<b class="fc">&nbsp;            pageable,</b>
+<b class="fc">&nbsp;            customerId,</b>
+<b class="fc">&nbsp;            employeeId,</b>
+<b class="fc">&nbsp;            carModelId,</b>
+<b class="fc">&nbsp;            status,</b>
+<b class="fc">&nbsp;            reservationDate,</b>
+<b class="fc">&nbsp;            startDate,</b>
+<b class="fc">&nbsp;            endDate,</b>
+&nbsp;        )
+&nbsp;
+<b class="fc">&nbsp;        logger.debug(&quot;Reservations retrieved: {} &quot;, reservations)</b>
+<b class="fc">&nbsp;        return reservations</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get single reservation&quot;,
+&nbsp;        description = &quot;Returns a reservation&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;/{reservationId}&quot;)
+&nbsp;    fun getReservationById(
+&nbsp;        @PathVariable reservationId: Long
+&nbsp;    ): ReservationDTO {
+<b class="fc">&nbsp;        logger.info(&quot;Getting reservation with id: {}&quot;, reservationId)</b>
+<b class="fc">&nbsp;        val reservation = reservationService.getReservationById(reservationId)</b>
+<b class="nc">&nbsp;        logger.debug(&quot;Reservation retrieved: {} &quot;, reservation)</b>
+<b class="nc">&nbsp;        return reservation</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Add a new reservation&quot;,
+&nbsp;        description = &quot;Creates a new reservation&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;201&quot;, description = &quot;Created&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @PostMapping(&quot;&quot;)
+&nbsp;    fun addReservation(
+&nbsp;        @Valid @RequestBody reservation: ReservationDTO,
+&nbsp;        uriBilder: UriComponentsBuilder
+&nbsp;    ): ResponseEntity&lt;ReservationDTO&gt; {
+<b class="fc">&nbsp;        logger.info(&quot;Adding reservation: {}&quot;, reservation)</b>
+&nbsp;
+<b class="fc">&nbsp;        val newReservation = reservationService.addReservation(reservation)</b>
+<b class="fc">&nbsp;        logger.debug(&quot;new reservation is : {} &quot;, newReservation)</b>
+&nbsp;
+<b class="fc">&nbsp;        val location = uriBilder.path(&quot;api/v1/reservations/${reservation.id}&quot;).buildAndExpand(newReservation.id).toUri()</b>
+<b class="fc">&nbsp;        logger.debug(&quot;location is: {} &quot;, location)</b>
+&nbsp;
+<b class="fc">&nbsp;        return ResponseEntity.created(location).body(newReservation)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Update a reservation&quot;,
+&nbsp;        description = &quot;Update a reservation&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @PutMapping(&quot;/{reservationId}&quot;)
+&nbsp;    fun updateReservationById(
+&nbsp;        @Valid @PathVariable reservationId: Long,
+&nbsp;        @RequestBody reservation: ReservationDTO
+&nbsp;    ): ReservationDTO{
+<b class="nc">&nbsp;        logger.info(&quot;updating reservation: {}&quot;, reservationId)</b>
+<b class="nc">&nbsp;        return reservationService.updateReservationById(reservationId, reservation)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Delete a reservation&quot;,
+&nbsp;        description = &quot;Delete a reservation by id&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @DeleteMapping(&quot;/{reservationId}&quot;)
+&nbsp;    fun deleteReservationById(
+&nbsp;        @Valid @PathVariable reservationId: Long
+&nbsp;    ){
+<b class="fc">&nbsp;        logger.info(&quot;Deleting reservation by id: {}&quot;, reservationId)</b>
+<b class="fc">&nbsp;        return reservationService.deleteReservationById(reservationId)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get reservations by userId&quot;,
+&nbsp;        description = &quot;get all reservations by a specific userId&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;users/{userId}&quot;)
+&nbsp;    fun getReservationsByUserId(
+&nbsp;        pageable: Pageable,
+&nbsp;        @PathVariable userId: Long,
+&nbsp;    ): Page&lt;ReservationDTO&gt; {
+<b class="nc">&nbsp;        logger.info(&quot;Getting reservations for user {}&quot;, userId)</b>
+<b class="nc">&nbsp;        val userReservations = reservationService.getReservationsByUserId(pageable, userId)</b>
+<b class="nc">&nbsp;        logger.debug(&quot;User reservations retrieved: {} &quot;, userReservations)</b>
+<b class="nc">&nbsp;        return userReservations</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

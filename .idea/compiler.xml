@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="APIGateway" options="-parameters" />
+      <module name="APIGateway.main" options="-parameters" />
+      <module name="APIGateway.test" options="-parameters" />
+      <module name="PaymentService" options="-parameters" />
+      <module name="PaymentService.main" options="-parameters" />
+      <module name="PaymentService.test" options="-parameters" />
+      <module name="ReservationService" options="-parameters" />
+      <module name="ReservationService.main" options="-parameters" />
+      <module name="ReservationService.test" options="-parameters" />
+      <module name="UserManagmentService" options="-parameters" />
+      <module name="UserManagmentService.main" options="-parameters" />
+      <module name="UserManagmentService.test" options="-parameters" />
+    </option>
+  </component>
+</project>

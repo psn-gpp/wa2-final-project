@@ -1,0 +1,388 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CustomerController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.usermanagmentservice.controllers</a>
+</div>
+
+<h1>Coverage Summary for Class: CustomerController (it.wa2.usermanagmentservice.controllers)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CustomerController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (38/38)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$1</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$10</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$11</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$12</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$13</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$14</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$15</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$16</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$17</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$18</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$19</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$2</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$20</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$21</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$22</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$23</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$24</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$25</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$26</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$27</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$28</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$3</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$4</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$5</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$6</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$7</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$8</td>
+  </tr>
+  <tr>
+    <td class="name">CustomerController$$SpringCGLIB$$9</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (38/38)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.usermanagmentservice.controllers
+&nbsp;
+&nbsp;import io.swagger.v3.oas.annotations.Operation
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponse
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponses
+&nbsp;import it.wa2.usermanagmentservice.dtos.CustomerDTO
+&nbsp;import it.wa2.usermanagmentservice.services.CustomerService
+&nbsp;import jakarta.validation.Valid
+&nbsp;import org.slf4j.LoggerFactory
+&nbsp;import org.springframework.data.domain.Page
+&nbsp;import org.springframework.data.domain.Pageable
+&nbsp;import org.springframework.format.annotation.DateTimeFormat
+&nbsp;import org.springframework.http.ResponseEntity
+&nbsp;import org.springframework.validation.annotation.Validated
+&nbsp;import org.springframework.web.bind.annotation.*
+&nbsp;import org.springframework.web.util.UriComponentsBuilder
+&nbsp;import java.util.*
+&nbsp;
+&nbsp;/**
+&nbsp; * Get all customer: [getCustomers]
+&nbsp; *
+&nbsp; * Get one customer: [getCustomerById]
+&nbsp; *
+&nbsp; * add: [addCustomer]
+&nbsp; *
+&nbsp; * delete: [deleteCustomerById]
+&nbsp; *
+&nbsp; * put: [updateCustomerById]
+&nbsp; *
+&nbsp; * get eligibility: [getEligibilityById]
+&nbsp; */
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;@RestController</b>
+&nbsp;@RequestMapping(&quot;/api/v1/customers&quot;)
+&nbsp;@Validated
+<b class="fc">&nbsp;class CustomerController(private val customerService: CustomerService) {</b>
+&nbsp;
+<b class="fc">&nbsp;    private val logger = LoggerFactory.getLogger(CustomerController::class.java)</b>
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get all customers&quot;,
+&nbsp;        description = &quot;Returns all customers&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;&quot;)
+&nbsp;    fun getCustomers(
+&nbsp;        pageable: Pageable,
+&nbsp;        @RequestParam(required = false) name: String?,
+&nbsp;        @RequestParam(required = false) surname: String?,
+&nbsp;        @RequestParam(required = false) address: String?,
+&nbsp;        @RequestParam(required = false) city: String?,
+&nbsp;        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+&nbsp;        @RequestParam(required = false) dateOfBirth: Date?,
+&nbsp;        @RequestParam(required = false) reliabilityScores: Int?,
+&nbsp;        @RequestParam(required = false) drivingLicence: String?,
+&nbsp;        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+&nbsp;        @RequestParam(required = false) expirationDate: Date?,
+&nbsp;    ): Page&lt;CustomerDTO&gt; {
+<b class="fc">&nbsp;        logger.info(&quot;Requesting all customers with filters:&quot; +</b>
+<b class="fc">&nbsp;                &quot;name: $name, surname=$surname, city=$city, dateOfBirth=$dateOfBirth &quot; +</b>
+<b class="fc">&nbsp;                &quot;reliabilityScores=$reliabilityScores, drivingLicence=$drivingLicence expirationDate=$expirationDate&quot;)</b>
+<b class="fc">&nbsp;        val result =  customerService.getCustomers(</b>
+<b class="fc">&nbsp;            pageable,</b>
+<b class="fc">&nbsp;            name,</b>
+<b class="fc">&nbsp;            surname,</b>
+<b class="fc">&nbsp;            address,</b>
+<b class="fc">&nbsp;            city,</b>
+<b class="fc">&nbsp;            dateOfBirth,</b>
+<b class="fc">&nbsp;            reliabilityScores,</b>
+<b class="fc">&nbsp;            drivingLicence,</b>
+<b class="fc">&nbsp;            expirationDate</b>
+&nbsp;        )
+<b class="fc">&nbsp;        logger.debug(&quot;Retrieved ${result.totalElements} customers&quot;)</b>
+<b class="fc">&nbsp;        return result</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get single customer&quot;,
+&nbsp;        description = &quot;Returns a customer&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;/{userId}&quot;)
+&nbsp;    fun getCustomerById(@PathVariable userId: Long): CustomerDTO {
+<b class="fc">&nbsp;        logger.info(&quot;Requesting customer with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        val customer = customerService.getCustomerById(userId)</b>
+<b class="fc">&nbsp;        logger.debug(&quot;Retrieve customer:${customer.genericUserData.email}&quot;)</b>
+<b class="fc">&nbsp;        return customer</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Add a new customer&quot;,
+&nbsp;        description = &quot;Creates a new customer&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;201&quot;, description = &quot;Created&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @PostMapping(&quot;&quot;)
+&nbsp;    fun addCustomer(
+&nbsp;        @Valid @RequestBody customer: CustomerDTO,
+&nbsp;        uriBuilder: UriComponentsBuilder
+&nbsp;    ): ResponseEntity&lt;CustomerDTO&gt; {
+<b class="fc">&nbsp;        logger.info(&quot;Creating a new customer with email: ${customer.genericUserData.email}&quot;)</b>
+<b class="fc">&nbsp;        val newCustomer = customerService.addCustomer(customer)</b>
+<b class="fc">&nbsp;        val location = uriBuilder.path(&quot;api/v1/customers/{userId}&quot;).buildAndExpand(newCustomer.genericUserData.id).toUri()</b>
+<b class="fc">&nbsp;        logger.info(&quot;Customer created successfully with id: ${newCustomer.genericUserData.id}&quot;)</b>
+<b class="fc">&nbsp;        return ResponseEntity.created(location).body(newCustomer)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Update a customer&quot;,
+&nbsp;        description = &quot;Update a customer&quot;,
+&nbsp;    )
+&nbsp;    @PutMapping(&quot;/{userId}&quot;)
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    fun updateCustomerById(
+&nbsp;        @Valid @PathVariable(&quot;userId&quot;) userId: Long,
+&nbsp;        @RequestBody customer: CustomerDTO
+&nbsp;    ): CustomerDTO {
+<b class="fc">&nbsp;        logger.info(&quot;Updating customer with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        val updatedCustomer = customerService.updateCustomer(userId, customer)</b>
+<b class="fc">&nbsp;        logger.info(&quot;Customer updated successfully with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        return updatedCustomer</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get customer eligibility&quot;,
+&nbsp;        description = &quot;Returns eligibility&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;/{userId}/eligibility&quot;)
+&nbsp;    fun getEligibilityById(@Valid @PathVariable(&quot;userId&quot;) userId: Long): Boolean {
+<b class="fc">&nbsp;        logger.info(&quot;Checking eligibility for customer with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        val eligibility = customerService.getEligibilityById(userId)</b>
+<b class="fc">&nbsp;        logger.info(&quot;Eligibility result for customer with id: $userId: $eligibility&quot;)</b>
+<b class="fc">&nbsp;        return eligibility</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Delete a customer&quot;,
+&nbsp;        description = &quot;Delete a customer by id&quot;,
+&nbsp;    )
+&nbsp;    @DeleteMapping(&quot;/{userId}&quot;)
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    fun deleteCustomerById(@PathVariable(&quot;userId&quot;) userId: Long) {
+<b class="fc">&nbsp;        logger.info(&quot;Deleting customer with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        customerService.deleteCustomerById(userId)</b>
+<b class="fc">&nbsp;        logger.info(&quot;Deleted customer with id: $userId&quot;)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

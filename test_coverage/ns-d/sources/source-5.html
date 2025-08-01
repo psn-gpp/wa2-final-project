@@ -1,0 +1,96 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > DrivetrainRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.reservationservice.repositories</a>
+</div>
+
+<h1>Coverage Summary for Class: DrivetrainRepository (it.wa2.reservationservice.repositories)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">DrivetrainRepository</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.reservationservice.repositories
+&nbsp;
+&nbsp;import it.wa2.reservationservice.entities.*
+&nbsp;import org.springframework.data.jpa.repository.JpaRepository
+&nbsp;
+&nbsp;interface CategoryRepository : JpaRepository&lt;Category, Long&gt; {
+&nbsp;    fun findByCategory(category: String): Category?
+&nbsp;}
+&nbsp;
+&nbsp;interface EngineRepository : JpaRepository&lt;Engine, Long&gt; {
+&nbsp;    fun findByType(type: String): Engine?
+&nbsp;}
+&nbsp;
+&nbsp;interface TransmissionRepository : JpaRepository&lt;Transmission, Long&gt; {
+&nbsp;    fun findByType(type: String): Transmission?
+&nbsp;}
+&nbsp;
+&nbsp;interface DrivetrainRepository : JpaRepository&lt;Drivetrain, Long&gt; {
+&nbsp;    fun findByType(type: String): Drivetrain?
+&nbsp;}
+&nbsp;
+&nbsp;interface SafetyFeaturesRepository : JpaRepository&lt;SafetyFeatures, Long&gt; {
+&nbsp;    fun findByFeature(feature: String): SafetyFeatures?
+&nbsp;}
+&nbsp;
+&nbsp;interface InfotainmentRepository : JpaRepository&lt;Infotainment, Long&gt; {
+&nbsp;    fun findByType(type: String): Infotainment?
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

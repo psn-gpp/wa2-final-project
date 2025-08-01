@@ -1,0 +1,301 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > GenericUserController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.usermanagmentservice.controllers</a>
+</div>
+
+<h1>Coverage Summary for Class: GenericUserController (it.wa2.usermanagmentservice.controllers)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GenericUserController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$1</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$10</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$11</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$12</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$13</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$14</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$15</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$16</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$17</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$18</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$19</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$2</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$20</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$21</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$22</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$23</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$24</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$25</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$26</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$27</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$28</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$3</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$4</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$5</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$6</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$7</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$8</td>
+  </tr>
+  <tr>
+    <td class="name">GenericUserController$$SpringCGLIB$$9</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.usermanagmentservice.controllers
+&nbsp;
+&nbsp;import io.swagger.v3.oas.annotations.Operation
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponse
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponses
+&nbsp;import it.wa2.usermanagmentservice.dtos.GenericUserDTO
+&nbsp;import it.wa2.usermanagmentservice.services.GenericUserService
+&nbsp;import jakarta.validation.Valid
+&nbsp;import org.slf4j.LoggerFactory
+&nbsp;import org.springframework.data.domain.Page
+&nbsp;import org.springframework.data.domain.Pageable
+&nbsp;import org.springframework.validation.annotation.Validated
+&nbsp;import org.springframework.web.bind.annotation.*
+&nbsp;
+&nbsp;
+&nbsp;/**
+&nbsp; * GET all users -&gt; [getUsers]
+&nbsp; *
+&nbsp; * GET single user -&gt; [getUserById]
+&nbsp; *
+&nbsp; * UPDATE user -&gt; [updateUserById]
+&nbsp; */
+<b class="fc">&nbsp;@RestController</b>
+&nbsp;@RequestMapping(&quot;/api/v1/users&quot;)
+&nbsp;@Validated
+<b class="fc">&nbsp;class GenericUserController(private val genericUserService: GenericUserService) {</b>
+&nbsp;
+<b class="fc">&nbsp;    private val logger = LoggerFactory.getLogger(GenericUserController::class.java)</b>
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get all users&quot;,
+&nbsp;        description = &quot;Returns all users (customers, staffs, managers)&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;&quot;)
+&nbsp;    fun getUsers(
+&nbsp;        pageable: Pageable,
+&nbsp;        @RequestParam(required = false) name: String?,
+&nbsp;        @RequestParam(required = false) surname: String?,
+&nbsp;        @RequestParam(required = false) address: String?,
+&nbsp;        @RequestParam(required = false) city: String?,
+&nbsp;    ): Page&lt;GenericUserDTO&gt; {
+<b class="fc">&nbsp;        logger.info(&quot;Requesting all user with filters:&quot; +</b>
+<b class="fc">&nbsp;                &quot;name: $name, surname=$surname, address=$address, city=$city&quot;)</b>
+<b class="fc">&nbsp;        val result = genericUserService.getUsers(</b>
+<b class="fc">&nbsp;            pageable,</b>
+<b class="fc">&nbsp;            name,</b>
+<b class="fc">&nbsp;            surname,</b>
+<b class="fc">&nbsp;            address,</b>
+<b class="fc">&nbsp;            city,</b>
+&nbsp;        )
+<b class="fc">&nbsp;        logger.debug(&quot;Retrieved ${result.totalElements} users&quot;)</b>
+<b class="fc">&nbsp;        return result</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get a specific user by id&quot;,
+&nbsp;        description = &quot;Returns the user specified by id&quot;,
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;/{userId}&quot;)
+&nbsp;    fun getUserById(@PathVariable(&quot;userId&quot;) userId: Long): GenericUserDTO {
+<b class="fc">&nbsp;        logger.info(&quot;Requesting user with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        val user = genericUserService.getUserById(userId)</b>
+<b class="fc">&nbsp;        logger.debug(&quot;Retrieve user: ${user.email}&quot;)</b>
+<b class="fc">&nbsp;        return user</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Update a user&quot;,
+&nbsp;        description = &quot;Update general information about a user&quot;,
+&nbsp;    )
+&nbsp;    @PutMapping(&quot;/{userId}&quot;)
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    fun updateUserById(@Valid @PathVariable(&quot;userId&quot;) userId: Long, @RequestBody user: GenericUserDTO): GenericUserDTO {
+<b class="fc">&nbsp;        logger.info(&quot;Updating user with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        val updatedUser = genericUserService.updateUserById(userId, user)</b>
+<b class="fc">&nbsp;        logger.info(&quot;User updated successfully with id: $userId&quot;)</b>
+<b class="fc">&nbsp;        return updatedUser</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

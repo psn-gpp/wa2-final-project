@@ -1,0 +1,127 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ReservationService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.reservationservice.services</a>
+</div>
+
+<h1>Coverage Summary for Class: ReservationService (it.wa2.reservationservice.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">ReservationService$Subclass0</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationService$Subclass0$auxiliary$BZGPAhhJ</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationService$Subclass0$auxiliary$iZZso3Go</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationService$Subclass0$auxiliary$m7tPYLoc</td>
+  </tr>
+  <tr>
+    <td class="name">ReservationService$Subclass0$auxiliary$x3QgVkBt</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.reservationservice.services
+&nbsp;
+&nbsp;import it.wa2.reservationservice.dtos.ReservationDTO
+&nbsp;import it.wa2.reservationservice.entities.Status
+&nbsp;import it.wa2.reservationservice.entities.Vehicle
+&nbsp;import org.springframework.data.domain.Page
+&nbsp;import org.springframework.data.domain.Pageable
+&nbsp;import java.util.*
+&nbsp;
+&nbsp;interface ReservationService {
+&nbsp;    fun getReservations(
+&nbsp;        pageable: Pageable,
+&nbsp;        customerId: Long?,
+&nbsp;        employeeId: Long?,
+&nbsp;        carModelId: Long?,
+&nbsp;        status: String?,
+&nbsp;        reservationDate: Date?,
+&nbsp;        startDate: Date?,
+&nbsp;        endDate: Date?,
+&nbsp;    ): Page&lt;ReservationDTO&gt;
+&nbsp;
+&nbsp;    fun getReservationById(
+&nbsp;        reservationId: Long
+&nbsp;    ): ReservationDTO
+&nbsp;
+&nbsp;    fun addReservation(
+&nbsp;        reservation: ReservationDTO
+&nbsp;    ): ReservationDTO
+&nbsp;
+&nbsp;    fun updateReservationById(
+&nbsp;        reservationId: Long,
+&nbsp;        reservation: ReservationDTO
+&nbsp;    ): ReservationDTO
+&nbsp;
+&nbsp;    fun deleteReservationById(
+&nbsp;        reservationId: Long
+&nbsp;    )
+&nbsp;
+&nbsp;    fun getReservationsByUserId(
+&nbsp;        pageable: Pageable,
+&nbsp;        userId: Long,
+&nbsp;    ): Page&lt;ReservationDTO&gt;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

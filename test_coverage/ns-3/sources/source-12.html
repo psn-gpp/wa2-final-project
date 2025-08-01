@@ -1,0 +1,532 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > VehiclesController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.reservationservice.controllers</a>
+</div>
+
+<h1>Coverage Summary for Class: VehiclesController (it.wa2.reservationservice.controllers)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">VehiclesController</td>
+<td class="coverageStat">
+  <span class="percent">
+    37.5%
+  </span>
+  <span class="absValue">
+    (6/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    22.6%
+  </span>
+  <span class="absValue">
+    (7/31)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$1</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$10</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$11</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$12</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$13</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$14</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$15</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$16</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$17</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$18</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$19</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$2</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$20</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$21</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$3</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$4</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$5</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$6</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$7</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$8</td>
+  </tr>
+  <tr>
+    <td class="name">VehiclesController$$SpringCGLIB$$9</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    37.5%
+  </span>
+  <span class="absValue">
+    (6/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    22.6%
+  </span>
+  <span class="absValue">
+    (7/31)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.reservationservice.controllers
+&nbsp;
+&nbsp;import com.github.fge.jsonpatch.JsonPatch
+&nbsp;import io.swagger.v3.oas.annotations.Operation
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponse
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponses
+&nbsp;import it.wa2.reservationservice.dtos.*
+&nbsp;import it.wa2.reservationservice.services.VehicleService
+&nbsp;import jakarta.validation.Valid
+&nbsp;import org.springframework.data.domain.Page
+&nbsp;import org.springframework.data.domain.Pageable
+&nbsp;import org.springframework.http.ResponseEntity
+&nbsp;import org.springframework.validation.annotation.Validated
+&nbsp;import org.springframework.web.bind.annotation.*
+&nbsp;import org.springframework.web.util.UriComponentsBuilder
+&nbsp;import java.time.LocalDate
+&nbsp;import java.time.format.DateTimeFormatter
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;@RestController</b>
+&nbsp;@Validated
+<b class="fc">&nbsp;class VehiclesController(private val vehicleService: VehicleService) {</b>
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get all vehicles&quot;,
+&nbsp;        description = &quot;Returns all vehicles&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;)
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;api/v1/vehicles&quot;)
+&nbsp;    fun getVehicles(
+&nbsp;        pageable: Pageable,
+&nbsp;        @RequestParam(required = false) refCarModel : Long?,
+&nbsp;        @RequestParam(required = false) availability : String?,
+&nbsp;        @RequestParam(required = false) licencePlate : String?,
+&nbsp;        @RequestParam(required = false) vin : String?,
+&nbsp;        @RequestParam(required = false) kilometers : Float?,
+&nbsp;        @RequestParam(required = false) pendingCleaning : Boolean?,
+&nbsp;        @RequestParam(required = false) pendingMaintenance : Boolean?,
+&nbsp;    ): Page&lt;VehicleDTO&gt; {
+<b class="fc">&nbsp;        return vehicleService.getVehicles(pageable, refCarModel, availability, licencePlate, vin, kilometers, pendingCleaning, pendingMaintenance )</b>
+&nbsp;    }
+&nbsp;    //#############################
+&nbsp;
+&nbsp;    // ########### GIUSEPPE #########################
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get a specific vehicle by id&quot;,
+&nbsp;        description = &quot;Returns the vehicle specified by id&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;    ])
+&nbsp;    @GetMapping(&quot;api/v1/vehicles/{vehicleId}&quot;)
+&nbsp;    fun getVehicleById(@PathVariable(&quot;vehicleId&quot;) vehicleId : Long):VehicleDTO{
+<b class="fc">&nbsp;        return vehicleService.getVehicleById(vehicleId)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Add a vehicle&quot;,
+&nbsp;        description = &quot;Add a new vehicle&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;    ])
+&nbsp;    @PostMapping(&quot;api/v1/vehicles&quot;)
+&nbsp;    fun addVehicle(
+&nbsp;        @Valid @RequestBody vehicle: VehicleDTO,
+&nbsp;        uriBuilder: UriComponentsBuilder
+&nbsp;    ) : ResponseEntity&lt;VehicleDTO&gt; {
+&nbsp;
+<b class="nc">&nbsp;        val savedVehicle = vehicleService.addVehicle(vehicle)</b>
+&nbsp;
+<b class="nc">&nbsp;        val location =  uriBuilder.path(&quot;api/v1/vehicles/{vehicleId}&quot;)</b>
+<b class="nc">&nbsp;            .buildAndExpand(savedVehicle.id)</b>
+<b class="nc">&nbsp;            .toUri()</b>
+&nbsp;
+<b class="nc">&nbsp;        return ResponseEntity.created(location).body(savedVehicle)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;update a vehicle&quot;,
+&nbsp;        description = &quot;upadate a vehicle by its id&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;    ])
+&nbsp;    @PutMapping(&quot;api/v1/vehicles/{vehicleId}&quot;)
+&nbsp;    fun updateVehicleById(
+&nbsp;        @PathVariable(&quot;vehicleId&quot;) vehicleId : Long,
+&nbsp;        @Valid @RequestBody vehicle: VehicleDTO)
+&nbsp;    {
+<b class="fc">&nbsp;        vehicleService.modifyVehicle(vehicleId, vehicle)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Delete a vehicle&quot;,
+&nbsp;        description = &quot;Delete a a vehicle by id&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;    ])
+&nbsp;    @DeleteMapping(&quot;api/v1/vehicles/{vehicleId}&quot;)
+&nbsp;    fun deleteVehicleById(@PathVariable(&quot;vehicleId&quot;) vehicleId : Long){
+<b class="fc">&nbsp;        return vehicleService.deleteVehicleById(vehicleId)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //########################################àààà
+&nbsp;
+&nbsp;    //
+&nbsp;
+&nbsp;    //### CHRISTIAN ##############
+&nbsp;    //////////////
+&nbsp;    //OPTIONAL---&gt; guarda traccia laboratorio
+&nbsp;    @PatchMapping(&quot;api/v1/vehicles/{carId}&quot;, consumes = [&quot;application/json-patch+json&quot;])
+&nbsp;    fun patchVehicleById(
+&nbsp;        @PathVariable(&quot;carId&quot;) carId : Long,
+&nbsp;        @RequestBody patch: JsonPatch
+&nbsp;    ) {
+<b class="fc">&nbsp;        vehicleService.patchVehicleById(carId,patch)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    //////////////
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get maintenances&quot;,
+&nbsp;        description = &quot;get all maintenances of a specific vehicle&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;    ])
+&nbsp;    @GetMapping(&quot;api/v1/vehicles/{vehicleId}/maintenances&quot;)
+&nbsp;    fun getVehicleMaintenances(
+&nbsp;        pageable: Pageable,
+&nbsp;        @RequestParam(required = false) vehicleLicencePlate: String?,
+&nbsp;        @RequestParam(required = false) defect: String?,
+&nbsp;        @RequestParam(required = false) completedMaintenance: Boolean?,
+&nbsp;        @RequestParam(required = false) date: String?,
+&nbsp;        @PathVariable(&quot;vehicleId&quot;) vehicleId: Long
+&nbsp;    ) : Page&lt;MaintenanceDTO&gt;{
+<b class="nc">&nbsp;        return vehicleService.getVehicleMaintenances(pageable,vehicleId, vehicleLicencePlate,defect,completedMaintenance,date)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get a maintenance&quot;,
+&nbsp;        description = &quot;get a specific maintenance of a specific vehicle&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;    ])
+&nbsp;    @GetMapping(&quot;api/v1/vehicles/{vehicleId}/maintenances/{maintenanceId}&quot;)
+&nbsp;    fun getVehicleMaintenanceById(
+&nbsp;        @PathVariable(&quot;vehicleId&quot;) vehicleId: Long,
+&nbsp;        @PathVariable(&quot;maintenanceId&quot;) maintenanceId : Long
+&nbsp;    ) : MaintenanceDTO{
+<b class="nc">&nbsp;        return vehicleService.getVehicleMaintenanceById(vehicleId,maintenanceId)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Add a maintenance&quot;,
+&nbsp;        description = &quot;Add a new maintenance to a specific vehicle&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;    ])
+&nbsp;    @PostMapping(&quot;api/v1/vehicles/{vehicleId}/maintenances&quot;)
+&nbsp;    fun addVehicleMaintenance(
+&nbsp;        @PathVariable(&quot;vehicleId&quot;) vehicleId : Long,
+&nbsp;        @Valid @RequestBody maintenance : MaintenanceDTO,
+&nbsp;        uriBuilder: UriComponentsBuilder
+&nbsp;    ):ResponseEntity&lt;MaintenanceDTO&gt;{
+<b class="nc">&nbsp;        val savedMaintenance=vehicleService.addVehicleMaintenance(vehicleId, maintenance)</b>
+&nbsp;
+<b class="nc">&nbsp;        val location = uriBuilder.path(&quot;api/v1/vehicles/{vehicleId}/maintenances/{maintenanceId}&quot;)</b>
+<b class="nc">&nbsp;            .buildAndExpand(vehicleId,savedMaintenance.id)</b>
+<b class="nc">&nbsp;            .toUri()</b>
+&nbsp;
+&nbsp;        //return the response to client
+<b class="nc">&nbsp;        return ResponseEntity.created(location).body(savedMaintenance)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //####################à
+&nbsp;
+&nbsp;    // ###### MATTEO #########
+&nbsp;    @Operation(summary = &quot;Modify a maintenance about a vehicle&quot;,
+&nbsp;        description = &quot;Modify a specific maintantence (maintenanceId) about a specific vehicleId&quot;,)
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Vehicle not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ApiResponse(responseCode=&quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;    ])
+&nbsp;    @PutMapping(&quot;api/v1/vehicles/{vehicleId}/maintenances/{maintenanceId}&quot;)
+&nbsp;    fun modifyVehicleMaintenance(
+&nbsp;        @PathVariable(&quot;vehicleId&quot;) vehicleId : Long,
+&nbsp;        @PathVariable(&quot;maintenanceId&quot;) maintenanceId : Long,
+&nbsp;        @Valid @RequestBody maintenance : MaintenanceDTO
+&nbsp;    ){
+<b class="nc">&nbsp;        vehicleService.modifyVehicleMaintenance(vehicleId, maintenanceDTO = maintenance)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(summary = &quot;Get notes about a vehicle&quot;,
+&nbsp;        description = &quot;Returns list of all notes about a specific vehicleId&quot;,)
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Vehicle not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ApiResponse(responseCode=&quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;    ])
+&nbsp;    @GetMapping(&quot;api/v1/vehicles/{vehicleId}/notes&quot;)
+&nbsp;    //we pass page number page size and sort as request parameter
+&nbsp;    //like: GET /vehicles/1/notes?page=0&amp;size=10&amp;sort=field,desc
+&nbsp;    // sort=field, desc --&gt; result are sorted by field in descending way
+&nbsp;    // ?sort=field1desc&amp;sort=field2,asc --&gt; result order first by field1 then by field2
+&nbsp;    // sorting on nested fields --&gt; sort=vehicle.name,asc
+&nbsp;    // sorting and pages are supported automatically by springboot
+&nbsp;    fun getVehicleNotes(
+&nbsp;        @PathVariable(&quot;vehicleId&quot;) vehicleId : Long,
+&nbsp;        pageable: Pageable,
+&nbsp;        @RequestParam(required = false) startDate : String?,
+&nbsp;        @RequestParam(required = false) endDate : String?,
+&nbsp;        @RequestParam(required = false) author: String?) : Page&lt;NoteDTO&gt;{
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        val startD = startDate?.let { LocalDate.parse(it, DateTimeFormatter.ISO_LOCAL_DATE) }</b>
+<b class="nc">&nbsp;        val endD = endDate?.let { LocalDate.parse(it, DateTimeFormatter.ISO_LOCAL_DATE) }</b>
+&nbsp;
+<b class="nc">&nbsp;        return vehicleService.getVehicleNotes(vehicleId, pageable,startD,endD,author)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(summary = &quot;Add a new note about a vehicle&quot;,
+&nbsp;        description = &quot;insert a new note for a specific vehicleId&quot;,)
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode =&quot;201&quot;, description = &quot;Created a new note&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Vehicle not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ApiResponse(responseCode=&quot;400&quot;, description = &quot;Bad request: note is not correct&quot;),
+&nbsp;    ])
+&nbsp;    @PostMapping(&quot;api/v1/vehicles/{vehicleId}/notes&quot;)
+&nbsp;    fun addVehicleNote(
+&nbsp;        @PathVariable(&quot;vehicleId&quot;) vehicleId: Long,
+&nbsp;        @Valid @RequestBody note: NoteDTO,
+&nbsp;        uriBuilder: UriComponentsBuilder
+&nbsp;        //può essere meglio usare NoteResponseDTO diverso da NoteDTO --&gt; vedere meglio
+&nbsp;    ): /*ResponseEntity&lt;NoteResponseDTO&gt;*/ ResponseEntity&lt;NoteDTO&gt; {
+&nbsp;
+<b class="nc">&nbsp;        val savedNote = vehicleService.addVehicleNote(vehicleId, note)</b>
+&nbsp;
+&nbsp;        // URI creation for the new saved note
+&nbsp;        //val location = uriBuilder.path(&quot;api/v1/vehicles/{vehicleId}/notes/{noteId}&quot;)
+<b class="nc">&nbsp;        val location = uriBuilder.path(&quot;api/v1/vehicles/{vehicleId}/notes&quot;)</b>
+<b class="nc">&nbsp;            .buildAndExpand(vehicleId/*, savedNote.id*/)</b>
+<b class="nc">&nbsp;            .toUri()</b>
+&nbsp;
+&nbsp;        //return the response to client
+<b class="nc">&nbsp;        return ResponseEntity.created(location).body(savedNote)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ############
+&nbsp;
+&nbsp;    // PUT note
+&nbsp;
+&nbsp;    @Operation(summary = &quot;Modify a note about a vehicle&quot;,
+&nbsp;        description = &quot;Modify a specific note (noteId) about a specific vehicleId&quot;,)
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Vehicle not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Note not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ApiResponse(responseCode=&quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;    ])
+&nbsp;    @PutMapping(&quot;api/v1/vehicles/{vehicleId}/notes/{noteId}&quot;)
+&nbsp;    fun modifyVehicleNote(
+&nbsp;        @PathVariable(&quot;vehicleId&quot;) vehicleId : Long,
+&nbsp;        @PathVariable(&quot;noteId&quot;) noteId : Long,
+&nbsp;        @Valid @RequestBody note : NoteDTO
+&nbsp;    ){
+<b class="nc">&nbsp;        vehicleService.modifyVehicleNote(vehicleId, noteId, note)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // DELETE note
+&nbsp;    @Operation(summary = &quot;Delete a note about a vehicle&quot;,
+&nbsp;        description = &quot;Delete a specific note (noteId) about a specific vehicleId&quot;,)
+&nbsp;    @ApiResponses(value = [
+&nbsp;        ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Vehicle not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;404&quot;, description = &quot;Note not found&quot;),
+&nbsp;        ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;),
+&nbsp;        ApiResponse(responseCode=&quot;400&quot;, description = &quot;Bad request&quot;),
+&nbsp;    ])
+&nbsp;    @DeleteMapping(&quot;api/v1/vehicles/{vehicleId}/notes/{noteId}&quot;)
+&nbsp;    fun deleteVehicleNote(
+&nbsp;        @PathVariable(&quot;vehicleId&quot;) vehicleId : Long,
+&nbsp;        @PathVariable(&quot;noteId&quot;) noteId : Long
+&nbsp;    ){
+<b class="nc">&nbsp;        vehicleService.deleteVehicleNote(vehicleId, noteId)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Operation(
+&nbsp;        summary = &quot;Get all filter types&quot;,
+&nbsp;        description = &quot;Returns all filter types (availability)&quot;
+&nbsp;    )
+&nbsp;    @ApiResponses(
+&nbsp;        value = [
+&nbsp;            ApiResponse(responseCode = &quot;200&quot;, description = &quot;OK&quot;),
+&nbsp;            ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;)
+&nbsp;        ]
+&nbsp;    )
+&nbsp;    @GetMapping(&quot;api/v1/vehicles/filters&quot;)
+&nbsp;    fun getVehiclesFilters(): VehicleFiltersDTO {
+<b class="nc">&nbsp;        return vehicleService.getFilters()</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

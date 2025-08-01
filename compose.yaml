@@ -1,0 +1,218 @@
+services:
+  # PostgreSQL database
+  postgres:
+    image: postgres:latest
+    container_name: postgres_multi_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_MULTIPLE_DATABASES: db1:user1:pass1,db2:user2:pass2,db3:user3:pass3,keycloak:keycloak:keycloak
+    volumes:
+      - ./init-multiple-databases.sh:/docker-entrypoint-initdb.d/init-multiple-databases.sh
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
+    restart: unless-stopped
+    networks:
+      - kfk-net
+
+  # Kafka
+  kafka:
+    image: bitnami/kafka:latest
+    container_name: paypal-kafka
+    depends_on:
+      - postgres
+    ports:
+      - "9093:9093"
+      - "9092:9092"
+      - "9091:9091"
+    environment:
+      KAFKA_CFG_NODE_ID: 1
+      KAFKA_CFG_PROCESS_ROLES: controller,broker
+      #KAFKA_CFG_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_CFG_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,PLAINTEXT_HOST://:9091
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      #KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,PLAINTEXT_HOST://localhost:9091
+      KAFKA_CFG_LOG_RETENTION_HOURS: 168
+      KAFKA_CFG_LOG_RETENTION_BYTES: 1073741824
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+    volumes:
+      - kafka_data:/bitnami/kafka
+    networks:
+      - kfk-net
+
+  # Kafka Connect
+  kafka-connect:
+    image: confluentinc/cp-kafka-connect:latest
+    container_name: paypal-kafka-connect
+    depends_on:
+      - kafka
+      #healthcheck:
+      #test: [ "CMD", "curl", "-f", "http://localhost:8083/" ]
+      #test: ["CMD", "curl", "-s", "-f", "http://localhost:8083/connectors"]
+      #test: ["CMD", "curl", "-s", "-f", "http://kafka-connect:8083/connectors"]
+      #interval: 10s
+      #timeout: 5s
+      #retries: 5
+    healthcheck:
+      test: [ "CMD", "curl", "-s", "-f", "http://kafka-connect:8083/connector-plugins" ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    environment:
+      #CONNECT_BOOTSTRAP_SERVERS: localhost:9092
+      CONNECT_BOOTSTRAP_SERVERS: kafka:9092
+      #CONNECT_REST_PORT: 28082
+      CONNECT_REST_PORT: 8083
+      CONNECT_GROUP_ID: kafka-connect
+      CONNECT_CONFIG_STORAGE_TOPIC: kafka-connect-config
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect-offset
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_PARTITIONS: -1
+      CONNECT_OFFSET_PARTITION_NAME: kafka-connect.1
+      CONNECT_STATUS_STORAGE_TOPIC: kafka-connect-status
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_PARTITIONS: -1
+      CONNECT_KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
+      CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_INTERNAL_KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
+      CONNECT_INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_PRODUCER_INTERCEPTOR_CLASSES: io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor
+      CONNECT_CONSUMER_INTERCEPTOR_CLASSES: io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor
+      CONNECT_REST_ADVERTISED_HOST_NAME: kafka-connect
+      CONNECT_PLUGIN_PATH: /usr/share/java,/usr/share/confluent-hub-components
+      CONNECT_LOG4J_LOGGERS: org.reflections=ERROR
+    volumes:
+      - kafka_connect_plugins:/usr/share/confluent-hub-components
+    command:
+      - bash
+      - -c
+      - |
+        echo "Installing Debezium connector..." 
+        confluent-hub install debezium/debezium-connector-postgresql:latest --no-prompt 
+        echo "Starting Kafka Connect..." 
+        /etc/confluent/docker/run
+    networks:
+      - kfk-net
+
+  # Setup Debezium connector
+  setup-connector:
+    image: curlimages/curl:latest
+    container_name: setup-connector
+    depends_on:
+      kafka-connect:
+        condition: service_healthy
+      postgres:
+        condition: service_started
+    restart: no
+    networks:
+      - kfk-net
+    command:
+      - sh
+      - -c
+      - |
+        echo "Waiting for Kafka Connect to become available..."
+        until curl -s -f http://kafka-connect:8083/connectors; do
+          echo "Kafka Connect not ready yet, retrying..."
+          sleep 5
+        done
+        
+        echo "Kafka Connect is up. Deleting existing connector (if any)..."
+        curl -X DELETE http://kafka-connect:8083/connectors/paypal-outbox-connector
+        
+        echo "Registering new connector..."
+        
+        RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+          -H "Content-Type: application/json" \
+          --data '{
+            "name": "paypal-outbox-connector",
+            "config": {
+              "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+              "database.hostname": "postgres",
+              "database.port": "5432",
+              "database.user": "user3",
+              "database.password": "pass3",
+              "database.dbname": "db3",
+              "database.server.name": "postgres",
+              "schema.include.list": "public",
+              "table.include.list": "public.paypal_outbox_events",
+              "topic.prefix": "paypal",
+              "transforms": "unwrap",
+              "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+              "transforms.unwrap.drop.tombstones": "true",
+              "plugin.name": "pgoutput",
+              "key.converter.schemas.enable": "false",
+              "value.converter.schemas.enable": "false",
+              "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+              "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+              "snapshot.mode": "initial"
+            }
+          }' http://kafka-connect:8083/connectors 2>&1)
+        
+        echo "Raw curl response:"
+        echo "$RESPONSE"
+        
+        STATUS=$(echo "$RESPONSE" | grep -o '[0-9][0-9][0-9]$')
+        BODY=$(echo "$RESPONSE" | sed "s/$STATUS\$//")
+        
+        echo "HTTP status code: $STATUS"
+        echo "Response body:"
+        echo "$BODY"
+        
+        if [ "$STATUS" = "201" ]; then
+          echo "Connector registered successfully."
+          exit 0
+        else
+          echo "Failed to register connector. Status code: $STATUS"
+          exit 1
+        fi
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - 9090:8080
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      DYNAMIC_CONFIG_ENABLED: 'true'
+    networks:
+      - kfk-net
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.2.3 #official image of keycloak
+    environment:
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin   # identity of the user (who is the administrator)
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin   # this is temporary credential -> just useful for configure it
+      - KC_DB=postgres
+      - KC_DB_URL_HOST=postgres
+      - KC_DB_PORT=5432
+      - KC_DB_USERNAME=keycloak
+      - KC_DB_PASSWORD=keycloak
+      - KC_DB_DATABASE=keycloak
+    ports:
+      - "9095:8080"   # the default keycloak uses the port 8080 -> we redirect it to port 9095
+    volumes:
+       - ./realm:/opt/keycloak/data/import
+    command:
+      - start-dev
+      - --import-realm # "start" -> need to operate in a secure way (SSL certificate), we use start-dev
+    depends_on:
+      postgres:
+        condition: service_started
+    networks:
+      - kfk-net
+
+volumes:
+  postgres_data:
+  kafka_data:
+  kafka_connect_plugins:
+networks:
+  kfk-net:
+    driver: bridge

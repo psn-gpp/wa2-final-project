@@ -1,0 +1,150 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Employee</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.usermanagmentservice.entities</a>
+</div>
+
+<h1>Coverage Summary for Class: Employee (it.wa2.usermanagmentservice.entities)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Employee</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    78.6%
+  </span>
+  <span class="absValue">
+    (11/14)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Employee$HibernateInstantiator</td>
+  </tr>
+  <tr>
+    <td class="name">Employee$HibernateProxy</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    78.6%
+  </span>
+  <span class="absValue">
+    (11/14)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.usermanagmentservice.entities
+&nbsp;
+&nbsp;import it.wa2.usermanagmentservice.dtos.EmployeeDTO
+&nbsp;import jakarta.persistence.*
+&nbsp;
+&nbsp;
+&nbsp;@Entity
+&nbsp;class Employee (
+<b class="fc">&nbsp;    @OneToOne(cascade = [CascadeType.ALL])</b>
+&nbsp;    @MapsId
+<b class="fc">&nbsp;    var genericUserData: GenericUser,</b>
+&nbsp;
+<b class="fc">&nbsp;    @ManyToOne</b>
+<b class="fc">&nbsp;    var role: Role,  // Staff, Fleet Manager, Manager</b>
+<b class="fc">&nbsp;    var salary: Double</b>
+&nbsp;
+<b class="fc">&nbsp;) : BaseEntity() {</b>
+&nbsp;
+<b class="fc">&nbsp;    fun toDTO(): EmployeeDTO = EmployeeDTO(</b>
+<b class="fc">&nbsp;        id = this.id,</b>
+<b class="fc">&nbsp;        genericUserData = this.genericUserData.toDTO(),</b>
+<b class="fc">&nbsp;        role = this.role.toDTO(),</b>
+<b class="fc">&nbsp;        salary = this.salary,</b>
+&nbsp;    )
+&nbsp;
+&nbsp;    fun update(newEmployee: Employee) {
+<b class="nc">&nbsp;        this.genericUserData.update(newEmployee.genericUserData)</b>
+<b class="nc">&nbsp;        this.role = newEmployee.role</b>
+<b class="nc">&nbsp;        this.salary = newEmployee.salary</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

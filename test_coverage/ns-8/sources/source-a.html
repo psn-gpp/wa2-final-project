@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > GlobalExceptionHandler</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.wa2.usermanagmentservice.advices</a>
+</div>
+
+<h1>Coverage Summary for Class: GlobalExceptionHandler (it.wa2.usermanagmentservice.advices)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GlobalExceptionHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package it.wa2.usermanagmentservice.advices
+&nbsp;
+&nbsp;import it.wa2.usermanagmentservice.dtos.GenericUserDTO
+&nbsp;import jakarta.validation.ConstraintViolationException
+&nbsp;import org.springframework.http.HttpStatus
+&nbsp;import org.springframework.http.ProblemDetail
+&nbsp;import org.springframework.http.ResponseEntity
+&nbsp;import org.springframework.web.bind.MethodArgumentNotValidException
+&nbsp;import org.springframework.web.bind.annotation.ExceptionHandler
+&nbsp;import org.springframework.web.bind.annotation.ResponseStatus
+&nbsp;import org.springframework.web.bind.annotation.RestControllerAdvice
+&nbsp;
+<b class="fc">&nbsp;@RestControllerAdvice</b>
+&nbsp;class GlobalExceptionHandler {
+&nbsp;
+&nbsp;    @ExceptionHandler(MethodArgumentNotValidException::class)
+&nbsp;    @ResponseStatus(HttpStatus.BAD_REQUEST)
+<b class="fc">&nbsp;    fun handleMethodArgumentNotValidException(e: MethodArgumentNotValidException) = ProblemDetail.forStatusAndDetail(</b>
+<b class="fc">&nbsp;        HttpStatus.BAD_REQUEST, e.message</b>
+&nbsp;    )
+&nbsp;
+&nbsp;    @ExceptionHandler(ConstraintViolationException::class)
+&nbsp;    @ResponseStatus(HttpStatus.BAD_REQUEST)
+<b class="nc">&nbsp;    fun handleConstraintViolationException( e: ConstraintViolationException) = ProblemDetail.forStatusAndDetail(</b>
+<b class="nc">&nbsp;        HttpStatus.BAD_REQUEST, e.message</b>
+&nbsp;    )
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-02 00:08</div>
+</div>
+</body>
+</html>

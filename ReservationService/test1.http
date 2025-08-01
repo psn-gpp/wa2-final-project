@@ -1,0 +1,275 @@
+@carModelId = 1
+@vehicleId = 1
+
+// per aggiungere un nuovo car model, model e manufactuter devono essere diversi
+// l'ho fatto così per non dover cambiare sempre a mano i dati nel caso in cui si voglia testare più volte
+@model = {{$random.company.buzzword}}
+@manufacturer = {{$random.company.name}}
+
+###### CAR MODEL -- disposte come "user flow"
+
+### Add a new car model
+POST http://localhost:8080/api/v1/models
+Content-Type: application/json
+
+{
+  "id": 0,
+  "brand": "test brand",
+  "model": "{{model}}",
+  "modelYear": 2025 ,
+  "segment": "test segment",
+  "doorsNo": 5,
+  "seatingCapacity": 5,
+  "luggageCapacity": 340,
+  "category": "category1",
+  "manufacturer": "{{manufacturer}}",
+  "costPerDay": 100,
+  "motorDisplacement": 2.0,
+  "airConditioning": false,
+  "engine": "electric",
+  "transmission": "manual",
+  "drivetrain": "FWD",
+  "safetyFeatures": ["feature1"],
+  "infotainments": ["radio", "USB"]
+}
+
+
+> {%
+    client.global.set("car_model_id", response.body.id);
+%}
+
+### Get all car models
+GET http://localhost:8080/api/v1/models?page=0&size=5&sort=brand%2Casc
+Accept: application/json
+
+### Get car model by id
+GET http://localhost:8080/api/v1/models/{{carModelId}}
+Accept: application/json
+
+### Update a car model by id
+PUT http://localhost:8080/api/v1/models/{{car_model_id}}
+Content-Type: application/json
+
+{
+  "id": {{car_model_id}},
+  "brand": "update with test",
+  "model": "{{model}}",
+  "modelYear": 2025 ,
+  "segment": "test segment",
+  "doorsNo": 5,
+  "seatingCapacity": 5,
+  "luggageCapacity": 340,
+  "category": "category2",
+  "manufacturer": "{{manufacturer}}",
+  "costPerDay": 200,
+  "motorDisplacement": 2.0,
+  "airConditioning": false,
+  "engine": "electric",
+  "transmission": "manual",
+  "drivetrain": "FWD",
+  "safetyFeatures": ["feature1"],
+  "infotainments": ["radio", "USB"]
+}
+
+
+###### VEHICLES
+### Get all vehicles
+GET http://localhost:8080/api/v1/vehicles?page=0&size=1&sort=
+Content-Type: application/json
+
+### Add a new vehicle
+POST http://localhost:8080/api/v1/vehicles
+Content-Type: application/json
+
+{
+  "refCarModel": 1,
+  "availability": "available",
+  "licencePlate": "AB-1234",
+  "vin": "1HGCM82633A123456",
+  "kilometers": 0,
+  "pendingCleaning": true,
+  "pendingMaintenance": true
+}
+
+> {%
+    client.global.set("vehicle_id", response.body.id);
+    client.global.set("licence_plate", response.body.licencePlate);
+%}
+
+### Get vehicle by id
+GET http://localhost:8080/api/v1/vehicles/{{vehicle_id}}
+Accept: application/json
+
+### Update a vehicle by id
+PUT http://localhost:8080/api/v1/vehicles/{{vehicle_id}}
+Content-Type: application/json
+
+{
+  "id": {{vehicle_id}},
+  "refCarModel": 1,
+  "availability": "rented",
+  "licencePlate": "{{licence_plate}}",
+  "vin": "CU225NEW90NF0EFUE",
+  "kilometers": 5,
+  "pendingCleaning": true,
+  "pendingMaintenance": true
+}
+
+### Patch a vehicle by id
+PATCH http://localhost:8080/api/v1/vehicles/{{vehicle_id}}
+Content-Type: application/json-patch+json
+
+[
+  { "op": "replace", "path": "/kilometers", "value": 40 },
+  { "op": "replace", "path": "/availability", "value": "" },
+  { "op": "replace", "path": "/licencePlate", "value": "" },
+  { "op": "replace", "path": "/vin", "value": "" }
+]
+
+### Add a new maintenance record
+POST http://localhost:8080/api/v1/vehicles/{{vehicle_id}}/maintenances
+Content-Type: application/json
+
+{
+  "id": 0,
+  "vehicleId": {{vehicle_id}},
+  "vehicleLicencePlate": "{{licence_plate}}",
+  "defect": "Brake failure",
+  "completedMaintenance": false,
+  "date": "2025-04-10"
+}
+
+> {%
+    client.global.set("maintenance_id", response.body.id);
+%}
+
+### Get all maintenances for a vehicle with filters
+GET http://localhost:8080/api/v1/vehicles/{{vehicle_id}}/maintenances?page=0&size=5&vehicleLicencePlate=09IXGH6RMA6X&
+    defect=engine failure&completedMaintenance=false
+Content-Type: application/json
+
+### Get maintenance by id
+GET http://localhost:8080/api/v1/vehicles/{{vehicle_id}}/maintenances/{{maintenance_id}}
+Content-Type: application/json
+
+
+
+###### NOTES
+
+### Add a new note for a vehicle_id
+POST http://localhost:8080/api/v1/vehicles/{{vehicle_id}}/notes
+Content-Type: application/json
+
+{
+  "id": 0,
+  "vehicleId": {{vehicle_id}},
+  "text": "${{$random.shakespeare.romeoAndJulietQuote}}",
+  "author": "gr7",
+  "date": "2025-03-03"
+
+}
+> {%
+    client.global.set("note_id", response.body.id);
+%}
+
+### Get all notes about a vehicleId
+GET http://localhost:8080/api/v1/vehicles/{{vehicle_id}}/notes
+Content-Type: application/json
+
+### Update a note for a vehicleId
+PUT http://localhost:8080/api/v1/vehicles/{{vehicle_id}}/notes/{{note_id}}
+Content-Type: application/json
+
+{
+  "id": {{note_id}},
+  "vehicleId": {{vehicle_id}},
+  "text": "{{$random.address.cityName}}",
+  "author": "{{$random.address.firstName}}",
+  "date": "2025-03-03"
+
+}
+
+### Delete a note by from a vehicleId
+DELETE http://localhost:8080/api/v1/vehicles/{{vehicle_id}}/notes/{{note_id}}
+Content-Type: application/json
+
+
+### ERROR "Vehicle not found": Get vehicle by id
+GET http://localhost:8080/api/v1/vehicles/100000
+Accept: application/json
+
+
+### ERROR "Availability not found": Add a new vehicle
+POST http://localhost:8080/api/v1/vehicles
+Content-Type: application/json
+
+{
+  "id": 0,
+  "refCarModel": 1,
+  "availability": "aaa",
+  "licencePlate": "09IXGH6R",
+  "vin": "CU225NEW90NF0EFUE",
+  "kilometers": 0,
+  "pendingCleaning": true,
+  "pendingMaintenance": true
+}
+
+### ERROR "Car model not found": Add a new vehicle
+POST http://localhost:8080/api/v1/vehicles
+Content-Type: application/json
+
+{
+  "id": 0,
+  "refCarModel": 80,
+  "availability": "aaa",
+  "licencePlate": "09IXGH6R",
+  "vin": "CU225NEW90NF0EFUE",
+  "kilometers": 0,
+  "pendingCleaning": true,
+  "pendingMaintenance": true
+}
+
+### ERROR "Vehicle not found":Update a vehicle by id
+PUT http://localhost:8080/api/v1/vehicles/-1
+Content-Type: application/json
+
+{
+  "id": {{vehicle_id}},
+  "refCarModel": 1,
+  "availability": "rented",
+  "licencePlate": "RC2CFIQID7H",
+  "vin": "CU225NEW90NF0EFUE",
+  "kilometers": 5,
+  "pendingCleaning": true,
+  "pendingMaintenance": true
+}
+
+### ERROR "Car model not found":Update a vehicle by id
+PUT http://localhost:8080/api/v1/vehicles/{{vehicle_id}}
+Content-Type: application/json
+
+{
+  "id": {{vehicle_id}},
+  "refCarModel": 80,
+  "availability": "rented",
+  "licencePlate": "RC2CFIQID7H",
+  "vin": "CU225NEW90NF0EFUE",
+  "kilometers": 5,
+  "pendingCleaning": true,
+  "pendingMaintenance": true
+}
+
+### ERROR "Availability not found": Update a vehicle by id
+PUT http://localhost:8080/api/v1/vehicles/{{vehicle_id}}
+Content-Type: application/json
+
+{
+  "id": {{vehicle_id}},
+  "refCarModel": 1,
+  "availability": "aaa",
+  "licencePlate": "RC2CFIQID7H",
+  "vin": "CU225NEW90NF0EFUE",
+  "kilometers": 5,
+  "pendingCleaning": true,
+  "pendingMaintenance": true
+}
